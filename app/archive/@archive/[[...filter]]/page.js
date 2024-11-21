@@ -4,7 +4,6 @@ import NewsList from '@/componenets/news-list';
 
 export default function FilteredNewsPage({ params }) {
     const { filter } = params;
-    console.log(filter);
 
     let news;
     let links = getAvaiableNewsYears(filter);
@@ -15,7 +14,6 @@ export default function FilteredNewsPage({ params }) {
     if(selectedYear && !selectedMonth) {
         news = getNewsByYear(selectedYear);
         links = getAvaiableNewsMonths(selectedYear);
-        console.log(links);
     }
 
     if (selectedMonth && selectedYear) {
@@ -28,7 +26,11 @@ export default function FilteredNewsPage({ params }) {
     if(news && news.length > 0) {
         newsContent = <NewsList news={news} />;
     }
-    
+
+    if ((selectedYear && !getAvaiableNewsYears().includes(selectedYear)) || (selectedMonth && !getAvaiableNewsMonths(selectedYear).includes(selectedMonth))) {
+        throw new Error('Invalid filter.');
+    }
+
     return (
         <header id="archive-header">
             <h1>Archive</h1>
