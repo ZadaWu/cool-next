@@ -1,10 +1,7 @@
-"use client";
-
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import NavLink from './nav-link';
 
 export default function MainHeader() {
-    const path = usePathname();
     return (
         <header id="main-header">
             <nav>
@@ -13,10 +10,10 @@ export default function MainHeader() {
                         <Link href="/">Home</Link>
                     </li>
                     <li>
-                        <Link href="/news" className={path.startsWith('/news') ? 'active' : ''}>News</Link>
+                        <NavLink href="/news">News</NavLink>
                     </li>
                     <li>
-                        <Link href="/archive" className={path.startsWith('/archive') ? 'active' : ''}>archive</Link>
+                        <NavLink href="/archive">archive</NavLink>
                     </li>
                 </ul>
             </nav>
