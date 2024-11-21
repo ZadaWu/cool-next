@@ -1,9 +1,9 @@
 import NewsList from '@/componenets/news-list';
-import { getNewsByYear } from '@/lib/news';
+import { getAllNews } from '@/lib/news';
 
 export default function NewsPage({params}) {
     const year = params.year;
-    const news = getNewsByYear(year);
+    const news = getAllNews(year);
     console.log('Rendering NewsPage component');
     return (
       <main>
